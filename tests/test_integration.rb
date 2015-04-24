@@ -150,11 +150,11 @@ Su Mo Tu We Th Fr Sa
 29 30 31
 
 EOS
-    assert_equal expected, output
+    assert_equal  output, expected
   end
 
   def test_june_2011
-    output   = `./cal.rb 05 2011`
+    output   = `./cal.rb 06 2011`
     expected = <<EOS
      June 2011
 Su Mo Tu We Th Fr Sa
@@ -169,7 +169,7 @@ EOS
   end
 
   def test_july_2011
-    output   = `./cal.rb 05 2011`
+    output   = `./cal.rb 07 2011`
     expected = <<EOS
      July 2011
 Su Mo Tu We Th Fr Sa
@@ -185,7 +185,7 @@ EOS
   end
 
   def test_august_2011
-    output   = `./cal.rb 05 2011`
+    output   = `./cal.rb 08 2011`
     expected = <<EOS
     August 2011
 Su Mo Tu We Th Fr Sa
@@ -200,7 +200,7 @@ EOS
   end
 
   def test_september_2011
-    output   = `./cal.rb 05 2011`
+    output   = `./cal.rb 09 2011`
     expected = <<EOS
    September 2011
 Su Mo Tu We Th Fr Sa
@@ -215,7 +215,7 @@ EOS
   end
 
   def test_october_2011
-    output   = `./cal.rb 05 2011`
+    output   = `./cal.rb 10 2011`
     expected = <<EOS
     October 2011
 Su Mo Tu We Th Fr Sa
@@ -231,7 +231,7 @@ EOS
   end
 
   def test_november_2011
-    output   = `./cal.rb 05 2011`
+    output   = `./cal.rb 11 2011`
     expected = <<EOS
    November 2011
 Su Mo Tu We Th Fr Sa
@@ -246,7 +246,7 @@ EOS
   end
 
   def test_december_2011
-    output   = `./cal.rb 05 2011`
+    output   = `./cal.rb 12 2011`
     expected = <<EOS
    December 2011
 Su Mo Tu We Th Fr Sa
