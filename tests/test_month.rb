@@ -24,7 +24,7 @@ EOS
   end
 
   def test_to_s_on_jan_2017
-    m = Month.new(01, 2017)
+    m        = Month.new(01, 2017)
     expected = <<EOS
     January 2017
 Su Mo Tu We Th Fr Sa
@@ -51,5 +51,10 @@ EOS
   def test_name_for_dec
     m = Month.new(12, 2009)
     assert_equal "December", m.name
+  end
+
+  def test_days_in_month
+    m = Month.new(05, 1992)
+    assert_equal 31, m.days_count
   end
 end
