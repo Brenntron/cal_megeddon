@@ -56,16 +56,18 @@ EOS
       print warning.chomp
     elsif @year.to_i > 3000
       print warning.chomp
-      else
-        (1..days).each do |d|
-          if d == 1
-            list << "#{d}"
-          elsif d.to_s.length < 2
-            list << "  #{d}"
-          else
-            list << " #{d}"
-          end
+    elsif @month.to_i > 13 || @month.to_i < 1
+      print warning.chomp
+    else
+      (1..days).each do |d|
+        if d == 1
+          list << "#{d}"
+        elsif d.to_s.length < 2
+          list << "  #{d}"
+        else
+          list << " #{d}"
         end
+    end
         if first > 1
           ((first * 3) - 2).times do
             list.prepend(" ")
