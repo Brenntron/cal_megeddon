@@ -31,7 +31,6 @@ class Month
 
   def month_setup
     days    = days_count
-    first   = Day.new(@month, @year).day_of_week
     @list    = ""
 
     (1..days).each do |d|
@@ -44,6 +43,13 @@ class Month
       end
     end
 
+    prepender
+    grid_maker
+  end
+
+  def prepender
+    first   = Day.new(@month, @year).day_of_week
+
     if first > 1
       ((first * 3) - 2).times do
         @list.prepend(" ")
@@ -51,7 +57,6 @@ class Month
     else
       @list.prepend(" ")
     end
-    grid_maker
   end
 
   def grid_maker
