@@ -32,34 +32,38 @@ class Month
   def month_setup
     days    = days_count
     first   = Day.new(@month, @year).day_of_week
-    list    = ""
+    @list    = ""
 
-      (1..days).each do |d|
-        if d == 1
-          list << "#{d}"
-        elsif d.to_s.length < 2
-          list << "  #{d}"
-        else
-          list << " #{d}"
-        end
+    (1..days).each do |d|
+      if d == 1
+        @list << "#{d}"
+      elsif d.to_s.length < 2
+        @list << "  #{d}"
+      else
+        @list << " #{d}"
       end
+    end
 
-        if first > 1
-          ((first * 3) - 2).times do
-            list.prepend(" ")
-          end
-        else
-          list.prepend(" ")
-        end
+    if first > 1
+      ((first * 3) - 2).times do
+        @list.prepend(" ")
+      end
+    else
+      @list.prepend(" ")
+    end
+    grid_maker
+  end
 
-      alpha   = list.slice!(0, 21).rstrip
-      beta    = list.slice!(0, 21).rstrip
-      delta   = list.slice!(0, 21).rstrip
-      gamma   = list.slice!(0, 21).rstrip
-      epsilon = list.slice!(0, 21).rstrip
-      omega   = list.slice!(0, 21)
+  def grid_maker
+      alpha   = @list.slice!(0, 21).rstrip
+      beta    = @list.slice!(0, 21).rstrip
+      delta   = @list.slice!(0, 21).rstrip
+      gamma   = @list.slice!(0, 21).rstrip
+      epsilon = @list.slice!(0, 21).rstrip
+      omega   = @list.slice!(0, 21)
 
       @week_grid = [alpha, beta, delta, gamma, epsilon, omega].join("\n")
+
   end
 
   def day_abbr
