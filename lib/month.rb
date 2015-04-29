@@ -23,15 +23,10 @@ class Month
   end
 
   def days_count
-    if [4, 6, 9, 11].include?(@month)
-      30
-    elsif @month == 2 && self.leap_year? == true
-      29
-    elsif @month == 2 && self.leap_year? == false
-      28
-    else
-      31
-    end
+    return 30 if [4, 6, 9, 11].include?(@month)
+    return 29 if @month == 2 && self.leap_year? == true
+    return 28 if @month == 2 && self.leap_year? == false
+    return 31 if [1, 3, 5, 7, 8, 10, 12].include?(@month)
   end
 
   def month_setup
