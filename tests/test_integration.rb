@@ -162,6 +162,7 @@ Su Mo Tu We Th Fr Sa
 12 13 14 15 16 17 18
 19 20 21 22 23 24 25
 26 27 28 29 30
+
 EOS
     assert_equal expected, output
   end
@@ -289,7 +290,7 @@ EOS
   def test_date_too_early
     output   = `./cal.rb 12 1799`
     expected = <<EOS
-Date not acceptable format/range
+Date not in acceptable format/range
 ./cal.rb [01-12] [1800-3000]
 EOS
     assert_equal expected, output
@@ -298,7 +299,7 @@ EOS
   def test_date_too_late
     output   = `./cal.rb 01 3001`
     expected = <<EOS
-Date not acceptable format/range
+Date not in acceptable format/range
 ./cal.rb [01-12] [1800-3000]
 EOS
     assert_equal expected, output

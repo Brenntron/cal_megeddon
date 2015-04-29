@@ -8,7 +8,7 @@ class TestYear < Minitest::Test
   end
 
   def test_min_year
-    output `./cal.rb 1800`
+    output = `./cal.rb 1800`
     expected = <<EOS
                              1800
 

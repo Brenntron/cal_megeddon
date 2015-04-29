@@ -19,13 +19,13 @@ class Month
   end
 
   def leap_year?
-    if @year % 4 == 0 and @year % 100 == 0 and @year % 400 == 0
+    if @year.to_i % 4 == 0 and @year.to_i % 100 == 0 and @year.to_i % 400 == 0
       return true
-    elsif @year % 4 == 0 and @year % 100 == 0 and @year != 400
+    elsif @year.to_i % 4 == 0 and @year.to_i % 100 == 0 and @year.to_i != 400
       return false
-    elsif @year % 4 == 0
+    elsif @year.to_i % 4 == 0
       return true
-    else
+    elsif @year.to_i % 4 != 0
       return false
     end
   end
@@ -33,32 +33,20 @@ class Month
   def days_count
     if [4, 6, 9, 11].include?(@month)
       30
-    elsif @month == 14 || @month == 2 && self.leap_year? == true
+    elsif @month.to_i == 2 && self.leap_year? == true
       29
-    elsif @month == 14 || @month == 2 && self.leap_year? == false
+    elsif @month.to_i == 2 && self.leap_year? == false
       28
     else
       31
     end
   end
 
-  def to_s
+  def month_setup
     days    = days_count
     first   = Day.new(@month, @year).day_of_week
     list    = ""
-    warning = <<EOS
-Date not acceptable format/range
-./cal.rb [01-12] [1800-3000]
-EOS
 
-
-    if @year.to_i < 1800
-      print warning.chomp
-    elsif @year.to_i > 3000
-      print warning.chomp
-    elsif @month.to_i > 13 || @month.to_i < 1
-      print warning.chomp
-    else
       (1..days).each do |d|
         if d == 1
           list << "#{d}"
@@ -67,7 +55,8 @@ EOS
         else
           list << " #{d}"
         end
-    end
+      end
+
         if first > 1
           ((first * 3) - 2).times do
             list.prepend(" ")
@@ -81,17 +70,31 @@ EOS
       delta   = list.slice!(0, 21).rstrip
       gamma   = list.slice!(0, 21).rstrip
       epsilon = list.slice!(0, 21).rstrip
-      omega   = list.slice!(0, 21).rstrip
+      omega   = list.slice!(0, 21)
 
-      <<EOS
+      @week_grid = [alpha, beta, delta, gamma, epsilon, omega].join("\n")
+  end
+
+  def day_abbr
+    "Su Mo Tu We Th Fr Sa"
+  end
+
+  def to_s
+    warning = <<EOS
+Date not in acceptable format/range
+./cal.rb [01-12] [1800-3000]
+EOS
+
+    if @year.to_i > 3000 || @year.to_i < 1800
+      return warning
+    elsif @month.to_i > 12
+      return warning
+    else
+      month_setup
+        <<EOS
 #{center}
-Su Mo Tu We Th Fr Sa
-#{alpha}
-#{beta}
-#{delta}
-#{gamma}
-#{epsilon}
-#{omega}
+#{day_abbr}
+#{@week_grid}
 EOS
     end
   end
