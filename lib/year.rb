@@ -4,7 +4,7 @@ class Year
   attr_reader :year, :month
 
   def initialize(year)
-    @year = year
+    @year = year.to_i
   end
 
   def center_year
@@ -32,10 +32,11 @@ EOS
 
   def combinator(month_1, month_2, month_3)
     combo = ""
+    grid_spacing = "  "
     line2 = month_2.to_s.lines
     line3 = month_3.to_s.lines
     month_1.each_line.with_index do |line, index|
-      combo << line.chomp.ljust(20) << "  " << line2[index].chomp.ljust(20) << "  " << line3[index]
+      combo << line.chomp.ljust(20) << grid_spacing << line2[index].chomp.ljust(20) << grid_spacing << line3[index]
     end
     combo
   end
@@ -45,7 +46,8 @@ EOS
 Date not in acceptable format/range
 ./cal.rb [01-12] [1800-3000]
 EOS
-    if @year.to_i > 3000 || @year.to_i < 1800
+
+    if @year > 3000 || @year < 1800
       return warning
     else
       month_grid = "#{center_year}"

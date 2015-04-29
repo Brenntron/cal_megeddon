@@ -5,13 +5,13 @@ class Month
 
   def initialize(month, year)
     @month = month.to_i
-    @year  = year
+    @year  = year.to_i
   end
 
   def name
     month_names = {1=>"January",2=>"February",3=>"March",4=>"April",5=>"May",6=>"June",7=>"July",8=>"August",9=>"September",10=>"October",11=>"November",12=>"December"}
-    @name = month_names[@month]
-    @name
+    name = month_names[@month]
+    name
   end
 
   def center
@@ -19,23 +19,15 @@ class Month
   end
 
   def leap_year?
-    if @year.to_i % 4 == 0 and @year.to_i % 100 == 0 and @year.to_i % 400 == 0
-      return true
-    elsif @year.to_i % 4 == 0 and @year.to_i % 100 == 0 and @year.to_i != 400
-      return false
-    elsif @year.to_i % 4 == 0
-      return true
-    elsif @year.to_i % 4 != 0
-      return false
-    end
+    (@year % 4 == 0 && @year % 100 != 0) || (@year % 100 == 0 && @year % 400 == 0)
   end
 
   def days_count
     if [4, 6, 9, 11].include?(@month)
       30
-    elsif @month.to_i == 2 && self.leap_year? == true
+    elsif @month == 2 && self.leap_year? == true
       29
-    elsif @month.to_i == 2 && self.leap_year? == false
+    elsif @month == 2 && self.leap_year? == false
       28
     else
       31
@@ -85,9 +77,7 @@ Date not in acceptable format/range
 ./cal.rb [01-12] [1800-3000]
 EOS
 
-    if @year.to_i > 3000 || @year.to_i < 1800
-      return warning
-    elsif @month.to_i > 12
+    if @month > 12 || @month < 1 || @year > 3000 || @year < 1800
       return warning
     else
       month_setup

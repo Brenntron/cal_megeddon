@@ -14,11 +14,11 @@ class Day
       @year  -= 1
     end
 
-    @start_day = (start_of_month + (((@month + 1) * 26) / 10).floor + @year + (@year / 4).floor + 6 * (@year / 100).floor + (@year / 400).floor) % 7
+    start_day = (start_of_month + (((@month + 1) * 26) / 10).floor + @year + (@year / 4).floor + 6 * (@year / 100).floor + (@year / 400).floor) % 7
 
-    if @start_day == 0
-      @start_day = 7
+    if start_day == 0
+      start_day = 7
     end
-    @start_day
+    start_day
   end
 end
