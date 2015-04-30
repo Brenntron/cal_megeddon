@@ -30,16 +30,18 @@ class Month
   end
 
   def month_setup
-    days    = days_count
-    @list    = ""
+    days                = days_count
+    @list               = ""
+    single_digit_spaces = "  "
+    double_digit_space  = " "
 
     (1..days).each do |d|
       if d == 1
         @list << "#{d}"
       elsif d.to_s.length < 2
-        @list << "  #{d}"
+        @list << single_digit_spaces << "#{d}"
       else
-        @list << " #{d}"
+        @list << double_digit_space << "#{d}"
       end
     end
 
