@@ -50,14 +50,15 @@ class Month
   end
 
   def prepender
-    first   = Day.new(@month, @year).day_of_week
+    first             = Day.new(@month, @year).day_of_week
+    first_day_spacing = " "
 
     if first > 1
       ((first * 3) - 2).times do
-        @list.prepend(" ")
+        @list.prepend(first_day_spacing)
       end
     else
-      @list.prepend(" ")
+      @list.prepend(first_day_spacing)
     end
   end
 
