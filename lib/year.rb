@@ -42,6 +42,7 @@ EOS
   end
 
   def to_s
+    new_line = "\n"
     warning = <<EOS
 Date not in acceptable format/range
 ./cal.rb [01-12] [1800-3000]
@@ -51,7 +52,7 @@ EOS
       return warning
     else
       month_grid = "#{center_year}"
-      month_grid << "\n" << "\n"
+      month_grid << new_line << new_line
       months_array = month_maker
       months_array.each_slice(3) do |m|
         month_grid << combinator(m[0], m[1], m[2])
