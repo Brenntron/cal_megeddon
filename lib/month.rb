@@ -44,8 +44,8 @@ EOS
 
   def days_count
     return 30 if [4, 6, 9, 11].include?(@month)
-    return 29 if @month == 2 && self.leap_year? == true
-    return 28 if @month == 2 && self.leap_year? == false
+    return 29 if @month == 2 && leap_year? == true
+    return 28 if @month == 2 && leap_year? == false
     return 31 if [1, 3, 5, 7, 8, 10, 12].include?(@month)
   end
 
