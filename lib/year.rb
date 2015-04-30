@@ -36,7 +36,8 @@ EOS
     line2 = month_2.to_s.lines
     line3 = month_3.to_s.lines
     month_1.each_line.with_index do |line, index|
-      combo << line.chomp.ljust(20) + grid_spacing + line2[index].chomp.ljust(20) + grid_spacing << line3[index]
+      combo << line.chomp.ljust(20) + grid_spacing +
+        line2[index].chomp.ljust(20) + grid_spacing << line3[index]
     end
     combo
   end
