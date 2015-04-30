@@ -21,7 +21,7 @@ EOS
         <<EOS
 #{center}
 #{day_abbr}
-#{grid}
+#{@week_grid}
 EOS
     end
   end
@@ -83,12 +83,14 @@ EOS
   end
 
   def grid_maker
-    num_of_weeks = 6
-    new_line     = "\n"
-    num_of_weeks.times do
-      grid << @list.slice!(0, 21).rstrip + new_line
-    end
-    grid
+      alpha   = @list.slice!(0, 21).rstrip
+      beta    = @list.slice!(0, 21).rstrip
+      delta   = @list.slice!(0, 21).rstrip
+      gamma   = @list.slice!(0, 21).rstrip
+      epsilon = @list.slice!(0, 21).rstrip
+      omega   = @list.slice!(0, 21)
+
+      @week_grid = [alpha, beta, delta, gamma, epsilon, omega].join("\n")
   end
 
   def day_abbr
