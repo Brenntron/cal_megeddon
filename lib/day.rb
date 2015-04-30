@@ -8,6 +8,8 @@ class Day
 
   def day_of_week
     start_of_month = 1
+    sat_correction = 7
+    day_error      = 0
 
     if month < 3
       @month += 12
@@ -16,8 +18,8 @@ class Day
 
     start_day = (start_of_month + (((@month + 1) * 26) / 10).floor + @year + (@year / 4).floor + 6 * (@year / 100).floor + (@year / 400).floor) % 7
 
-    if start_day == 0
-      start_day = 7
+    if start_day == day_error
+      start_day = sat_correction
     end
     start_day
   end

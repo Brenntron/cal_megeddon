@@ -8,6 +8,24 @@ class Month
     @year  = year.to_i
   end
 
+  def to_s
+    warning = <<EOS
+Date not in acceptable format/range
+./cal.rb [01-12] [1800-3000]
+EOS
+
+    if @month > 12 || @month < 1 || @year > 3000 || @year < 1800
+      return warning
+    else
+      month_setup
+        <<EOS
+#{center}
+#{day_abbr}
+#{@week_grid}
+EOS
+    end
+  end
+
   def name
     month_names = {1=>"January",2=>"February",3=>"March",4=>"April",5=>"May",6=>"June",7=>"July",8=>"August",9=>"September",10=>"October",11=>"November",12=>"December"}
     name = month_names[@month]
@@ -39,9 +57,9 @@ class Month
       if d == 1
         @list << "#{d}"
       elsif d.to_s.length < 2
-        @list << single_digit_spaces << "#{d}"
+        @list << single_digit_spaces + "#{d}"
       else
-        @list << double_digit_space << "#{d}"
+        @list << double_digit_space + "#{d}"
       end
     end
 
@@ -71,28 +89,9 @@ class Month
       omega   = @list.slice!(0, 21)
 
       @week_grid = [alpha, beta, delta, gamma, epsilon, omega].join("\n")
-
   end
 
   def day_abbr
     "Su Mo Tu We Th Fr Sa"
-  end
-
-  def to_s
-    warning = <<EOS
-Date not in acceptable format/range
-./cal.rb [01-12] [1800-3000]
-EOS
-
-    if @month > 12 || @month < 1 || @year > 3000 || @year < 1800
-      return warning
-    else
-      month_setup
-        <<EOS
-#{center}
-#{day_abbr}
-#{@week_grid}
-EOS
-    end
   end
 end

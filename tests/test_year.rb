@@ -4,7 +4,7 @@ require_relative '../lib/year'
 class TestYear < Minitest::Test
   def test_initializing_a_year_saves_values
     y = Year.new(2015)
-    assert 2015, y.year
+    assert 2015, y.to_s
   end
 
   def test_min_year
