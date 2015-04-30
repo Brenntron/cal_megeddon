@@ -58,7 +58,7 @@ EOS
     (1..days).each do |d|
       if d == 1
         @list << "#{d}"
-      elsif d.to_s.length < 2
+      elsif d < 10
         @list << single_digit_spaces + "#{d}"
       else
         @list << double_digit_space + "#{d}"
